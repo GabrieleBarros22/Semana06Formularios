@@ -5,13 +5,14 @@
 {% block page_content %}
 <div class="page-header">
     <h1>Olá, {% if name %}{{ name }}{% else %}Estranho{% endif %}!</h1>
+
+
+<h3>A sua Instituição de ensino é: {{ institution if institution else 'None' }}</h3>
+<h3>Está cursando a disciplina de: {{ disciplina if disciplina else }}</h3>
+
+<h4>O IP do computador remoto é: {{ remote_addr if remote_addr else 'None' }}</h4>
+<h4>O host da aplicação é: {{ request.host if request.host else 'None' }}</h4>
 </div>
-
-<h2>A sua Instituição de ensino é: {{ institution if institution else 'None' }}</h2>
-<h2>Está cursando a disciplina de: {{ disciplina if disciplina else 'None' }}</h2>
-
-<h3>O IP do computador remoto é: {{ remote_addr if remote_addr else 'None' }}</h3>
-<h3>O host da aplicação é: {{ request.host if request.host else 'None' }}</h3>
 
 <form method="POST">
     {{ form.hidden_tag() }}
@@ -28,7 +29,7 @@
         {{ form.disciplina.label }} {{ form.disciplina(class="form-control") }}
     </div>
     <div class="form-group">
-        {{ form.submit(class="btn btn-light") }}
+        {{ form.submit(class="btn btn-white") }}
     </div>
 </form>
 
