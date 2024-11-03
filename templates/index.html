@@ -7,11 +7,19 @@
     <h1>Olá, {% if name %}{{ name }}{% else %}Estranho{% endif %}!</h1>
 </div>
 
-<!-- Formulário usando Flask-WTF -->
+<h2>A sua Instituição de ensino é: {{ institution if institution else 'None' }}</h2>
+<h2>Está cursando a disciplina de: {{ disciplina if disciplina else 'None' }}</h2>
+
+<h3>O IP do computador remoto é: {{ remote_addr if remote_addr else 'None' }}</h3>
+<h3>O host da aplicação é: {{ request.host if request.host else 'None' }}</h3>
+
 <form method="POST">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.name.label }} {{ form.name(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.lastname.label }} {{ form.lastname(class="form-control") }}
     </div>
     <div class="form-group">
         {{ form.institution.label }} {{ form.institution(class="form-control") }}
@@ -20,7 +28,7 @@
         {{ form.disciplina.label }} {{ form.disciplina(class="form-control") }}
     </div>
     <div class="form-group">
-        {{ form.submit(class="btn btn-primary") }}
+        {{ form.submit(class="btn btn-light") }}
     </div>
 </form>
 
