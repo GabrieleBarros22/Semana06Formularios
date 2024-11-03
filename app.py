@@ -27,7 +27,12 @@ def index():
         session['institution'] = form.institution.data
         session['disciplina'] = form.disciplina.data
         return redirect(url_for('index'))
-    return render_template('index.html', form=form, name=session.get('name'), lastname=session.get('lastname'), institution=session.get('institution'), disciplina=session.get('disciplina'), current_time=datetime.utcnow())
+    
+    remote_addr = request.remote_addr or 'None'
+    remote_host = request.host or 'None'
+    
+    return render_template('index.html', form=form, name=session.get('name'), lastname=session.get('lastname'), institution=session.get('institution'), disciplina=session.get('disciplina'), current_time=datetime.utcnow(), remote_addr=remote_addr, remote_host=remote_host)
+
 
 @app.route('/user/<name>/<lastname>/<institution>/<disciplina>')
 def user(name, lastname, institution, disciplina):
