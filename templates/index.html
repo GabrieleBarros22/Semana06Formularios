@@ -8,9 +8,9 @@
 
 <h3>A sua Instituição de ensino é {{ institution if institution else 'None' }}</h3>
 <h3>Está cursando a disciplina de {% if disciplina %}{{ disciplina }}{% endif %}</h3>
-
-<p><h4>O IP do computador remoto é: {{ remote_addr if remote_addr else 'None' }}</h4>
-<h4>O host da aplicação é: {{ request.host if request.host else 'None' }}</h4></p>
+<br>
+<h4>O IP do computador remoto é: {{ remote_addr if remote_addr else 'None' }}</h4>
+<h4>O host da aplicação é: {{ request.host if request.host else 'None' }}</h4>
 </div>
 
 <form method="POST">
