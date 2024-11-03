@@ -14,7 +14,16 @@
         {{ form.name.label }} {{ form.name(class="form-control") }}
     </div>
     <div class="form-group">
+        {{ form.institution.label }} {{ form.institution(class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ form.disciplina.label }} {{ form.disciplina(class="form-control") }}
+    </div>
+    <div class="form-group">
         {{ form.submit(class="btn btn-primary") }}
     </div>
 </form>
+
+<p>The local date and time is {{ moment(current_time).format('MMMM D, YYYY h:mm A') }}.</p>
+<p>That was {{ moment(current_time).fromNow() }}.</p>
 {% endblock %}
