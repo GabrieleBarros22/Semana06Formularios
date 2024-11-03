@@ -21,23 +21,32 @@ class NameForm(FlaskForm):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = NameForm()
-    remote_addr = None
-    remote_host = None
     
     if form.validate_on_submit():
         session['name'] = form.name.data
         session['lastname'] = form.lastname.data
         session['institution'] = form.institution.data
         session['disciplina'] = form.disciplina.data
-        
-        # Atualiza o IP e o host somente após o envio do formulário
-        remote_addr = request.remote_addr
-        remote_host = request.host
+        session['remote_addr'] = request.remote_addr
+        session['remote_host'] = request.host
         
         return redirect(url_for('index'))
     
-    return render_template('index.html', form=form, name=session.get('name'), lastname=session.get('lastname'), institution=session.get('institution'), disciplina=session.get('disciplina'), current_time=datetime.utcnow(), remote_addr=remote_addr, remote_host=remote_host)
-
+    # Pegue os valores da sessão ou defina como None se não estiverem presentes
+    remote_addr = session.get('remote_addr', 'None')
+    remote_host = session.get('remote_host', 'None')
+    
+    return render_template(
+        'index.html',
+        form=form,
+        name=session.get('name'),
+        lastname=session.get('lastname'),
+        institution=session.get('institution'),
+        disciplina=session.get('disciplina'),
+        current_time=datetime.utcnow(),
+        remote_addr=remote_addr,
+        remote_host=remote_host
+    )
 
 @app.route('/user/<name>/<lastname>/<institution>/<disciplina>')
 def user(name, lastname, institution, disciplina):
